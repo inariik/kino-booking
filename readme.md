@@ -11,9 +11,9 @@
 
 **Установка:**
 
-1. Клонируйте репозиторий: `git clone https://github.com/inariik/kino-booking`
+1. Клонируйте репозиторий: `git clone https://github.com/inariik/seat-reservation`
 2. Откройте файл `index.html` в вашем браузере.
 
 **Демо:**
 
-https://inariik.github.io/kino-booking/
+https://inariik.github.io/seat-reservation/
