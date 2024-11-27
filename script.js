@@ -31,22 +31,25 @@ $(document).ready(function() {
 
         $.each(sessions, function(index, session) {
           let sessionTime = new Date(selectedDateObj);
-          let [hours, minutes] = session.split(':');
-          sessionTime.setHours(parseInt(hours), parseInt(minutes));
+          sessionTime.setHours(parseInt(session.split(':')[0]), parseInt(session.split(':')[1]));
 
           let isPast = sessionTime < now;
           let button = $(`<button class="session-button ${isPast ? 'past-session' : ''}">${session}</button>`);
+          button.prop('disabled', isPast);
           $('#session-picker').append(button);
         });
 
         $('#session-picker').on('click', '.session-button', function() {
           $('.session-button').removeClass('selected');
+
+          if ($(this).prop('disabled')) return; // Проверка на disabled
+
           $(this).addClass('selected');
           let selectedDate = $('.date-button.selected').text();
           let selectedSession = $(this).text();
+
           let sessionID = `${selectedDate}_${selectedSession}`;
 
-          if ($(this).hasClass('past-session')) return;
 
           $('#seat-grid').empty();
           let rows = 5;
@@ -76,7 +79,6 @@ $(document).ready(function() {
       $('#date-picker').append(button);
     });
   }
-
   function saveBooking(sessionID) {
     let bookedSeats = $('.booked').map(function() {
       return $(this).text();
@@ -91,7 +93,7 @@ $(document).ready(function() {
     if (bookings[sessionID]) {
       let seats = bookings[sessionID];
       $.each(seats, function(index, seat) {
-        $(`.seat:contains(${seat})`).addClass('booked');
+        $('.seat:contains(' + seat + ')').addClass('booked');
       });
     }
   }
@@ -100,7 +102,6 @@ $(document).ready(function() {
     let bookedCount = $('.booked').length;
     $('#booking-summary').text(`Забронировано мест для сеанса ${sessionID || "не выбран"}: ${bookedCount}`);
   }
-
   $('#reset-booking').click(function() {
     localStorage.removeItem('bookings');
     $('.booked').removeClass('booked');
@@ -108,5 +109,5 @@ $(document).ready(function() {
   });
 
   refreshDatePicker();
-  setInterval(refreshDatePicker, 60000);
+  setInterval(refreshDatePicker, 60000); // Обновление раз в минуту
 });
