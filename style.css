@@ -1,0 +1,62 @@
+#seat-grid td {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#seat-grid td.booked {
+  background-color: #c00; /* Темно-красный */
+  cursor: default;
+}
+
+.past-session {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.selected {
+  background-color: #4CAF50; /* Зеленый */
+  font-weight: bold;
+  border: 2px solid #3e8e41; /* Темно-зеленая рамка */
+}
+
+body {
+  font-family: Arial, sans-serif; /* Или любой другой шрифт */
+}
+
+.container {
+  padding: 20px;
+}
+
+#seat-grid {
+    width: 100%;
+}
+#seat-grid th, #seat-grid td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+  background-color: #008CBA; /* Темно-синий */
+  border-color: #008CBA;
+}
+.btn-primary:hover {
+  background-color: #2196F3; /* Светло-синий */
+}
+
+h1 {
+  color: #333; /* Темно-серый */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    #seat-grid {
+        font-size: 12px; /* Уменьшение размера текста */
+    }
+    #seat-grid td {
+        width: 20px; /* Уменьшение ширины ячеек */
+        height: 20px;
+    }
+}
