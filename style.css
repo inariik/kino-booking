@@ -6,23 +6,22 @@
 }
 
 #seat-grid td.booked {
-  background-color: #c00; /* Темно-красный */
+  background-color: #c00;
   cursor: default;
 }
 
 .past-session {
   opacity: 0.5;
-  pointer-events: none;
 }
 
 .selected {
-  background-color: #4CAF50; /* Зеленый */
+  background-color: #4CAF50;
   font-weight: bold;
-  border: 2px solid #3e8e41; /* Темно-зеленая рамка */
+  border: 2px solid #3e8e41;
 }
 
 body {
-  font-family: Arial, sans-serif; /* Или любой другой шрифт */
+  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -30,33 +29,35 @@ body {
 }
 
 #seat-grid {
-    width: 100%;
+  width: 100%;
 }
+
 #seat-grid th, #seat-grid td {
-    padding: 8px;
-    border: 1px solid #ddd;
+  padding: 8px;
+  border: 1px solid #ddd;
 }
 
 .btn-primary {
-  background-color: #008CBA; /* Темно-синий */
+  background-color: #008CBA;
   border-color: #008CBA;
 }
+
 .btn-primary:hover {
-  background-color: #2196F3; /* Светло-синий */
+  background-color: #2196F3;
 }
 
 h1 {
-  color: #333; /* Темно-серый */
+  color: #333;
   text-align: center;
   margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-    #seat-grid {
-        font-size: 12px; /* Уменьшение размера текста */
-    }
-    #seat-grid td {
-        width: 20px; /* Уменьшение ширины ячеек */
-        height: 20px;
-    }
+  #seat-grid {
+    font-size: 12px;
+  }
+  #seat-grid td {
+    width: 20px;
+    height: 20px;
+  }
 }

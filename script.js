@@ -37,48 +37,48 @@ $(document).ready(function() {
           let button = $(`<button class="session-button ${isPast ? 'past-session' : ''}">${session}</button>`);
           $('#session-picker').append(button);
         });
-
-        $('#session-picker').on('click', '.session-button', function() {
-          $('.session-button').removeClass('selected');
-          $(this).addClass('selected');
-          let selectedDate = $('.date-button.selected').text();
-          let selectedSession = $(this).text();
-          let sessionID = `${selectedDate}_${selectedSession}`;
-          $('#seat-grid').empty();
-          let rows = 5;
-          let cols = 10;
-          let seatCount = 1;
-          let seatGrid = $('#seat-grid');
-          let isPastSession = $(this).hasClass('past-session');
-      
-          for (let i = 0; i < rows; i++) {
-            let row = $('<tr>');
-            for (let j = 0; j < cols; j++) {
-              let seat = $('<td>').text(seatCount); // Убрал добавление класса seat здесь
-              seatCount++;
-              if (isPastSession) {
-                seat.addClass('past-session'); // Добавляем класс past-session ВНУТРИ цикла
-              }
-              seat.addClass('seat'); //Добавляем класс seat здесь
-              row.append(seat);
-            }
-            seatGrid.append(row);
-          }
-      
-          loadBooking(sessionID);
-      
-          $('.seat').click(function() {
-            if ($(this).hasClass('past-session')) return;
-            $(this).toggleClass('booked');
-            saveBooking(sessionID);
-            updateBookingSummary(sessionID);
-            $('#selected-session').text(`Выбрана дата: ${selectedDate}, время: ${selectedSession}`);
-          });
-        });
       });
       $('#date-picker').append(button);
     });
   }
+
+  $('#session-picker').on('click', '.session-button', function() {
+    $('.session-button').removeClass('selected');
+    $(this).addClass('selected');
+    let selectedDate = $('.date-button.selected').text();
+    let selectedSession = $(this).text();
+    let sessionID = `${selectedDate}_${selectedSession}`;
+    $('#seat-grid').empty();
+    let rows = 5;
+    let cols = 10;
+    let seatCount = 1;
+    let seatGrid = $('#seat-grid');
+    let isPastSession = $(this).hasClass('past-session');
+
+    for (let i = 0; i < rows; i++) {
+      let row = $('<tr>');
+      for (let j = 0; j < cols; j++) {
+        let seat = $('<td>').text(seatCount);
+        seatCount++;
+        if (isPastSession) {
+          seat.addClass('past-session');
+        }
+        seat.addClass('seat');
+        row.append(seat);
+      }
+      seatGrid.append(row);
+    }
+
+    loadBooking(sessionID);
+
+    $('.seat').click(function() {
+      if ($(this).hasClass('past-session')) return;
+      $(this).toggleClass('booked');
+      saveBooking(sessionID);
+      updateBookingSummary(sessionID);
+      $('#selected-session').text(`Выбрана дата: ${selectedDate}, время: ${selectedSession}`);
+    });
+  });
 
   function saveBooking(sessionID) {
     let bookedSeats = $('.booked').map(function() {
@@ -101,15 +101,15 @@ $(document).ready(function() {
 
   function updateBookingSummary(sessionID) {
     let bookedCount = $('.booked').length;
-    $('#booking-summary').text(`Забронировано мест для сеанса ${sessionID || "не выбран"}: ${bookedCount}`); // Обратные кавычки!
+    $('#booking-summary').text(`Забронировано мест для сеанса ${sessionID || "не выбран"}: ${bookedCount}`);
   }
-  
+
   $('#reset-booking').click(function() {
     localStorage.removeItem('bookings');
     $('.booked').removeClass('booked');
     updateBookingSummary();
   });
-  
+
   refreshDatePicker();
   setInterval(refreshDatePicker, 60000);
-  });
+});
