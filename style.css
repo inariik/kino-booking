@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 #seat-grid td {
   width: 30px;
   height: 30px;
@@ -15,13 +21,9 @@
 }
 
 .selected {
-  background-color: #4CAF50;
+  background-color: #3498db;
   font-weight: bold;
-  border: 2px solid #3e8e41;
-}
-
-body {
-  font-family: Arial, sans-serif;
+  border: 2px solid #2ecc71;
 }
 
 .container {
@@ -33,17 +35,19 @@ body {
 }
 
 #seat-grid th, #seat-grid td {
-  padding: 8px;
-  border: 1px solid #ddd;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
-  background-color: #008CBA;
-  border-color: #008CBA;
+  background-color: #2ecc71;
+  border-color: #2ecc71;
 }
 
 .btn-primary:hover {
-  background-color: #2196F3;
+  background-color: #1abc9c;
 }
 
 h1 {
@@ -60,4 +64,14 @@ h1 {
     width: 20px;
     height: 20px;
   }
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.list-group-item:hover {
+  background-color: #f7f7f7;
+  transition: all 0.3s ease-in-out;
 }
